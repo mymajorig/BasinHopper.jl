@@ -40,7 +40,7 @@ function distance_two_atoms(atom1, atom2)
     return norm(atom2 - atom1)
 end
 
-
+println(sum_lj_energy(2, 45))
 
 
 
