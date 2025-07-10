@@ -23,10 +23,6 @@ function round_num(vector::AbstractVector, digits)
     return vector
 end 
 
-vec = [2.8932, 5.9284]
-
-round_num(vec, 3)
-
 #lennard jones function 
 function lennard_jones(distance, epsilon = 1, sigma = 1) #defaults, if u change them in calls parameters will just be overridden
       return 4 * epsilon * ((sigma / distance)^ 12 - (sigma / distance)^ 6)
@@ -90,6 +86,7 @@ function sum_lj_energy(distance, x3, y3) #by using coordinates or fixing one dis
 end 
 
 function sum_lj_energy(positions) #a positions matrix where columns = 3 and rows = however many atoms there are 
+    positions = reshape(positions, :, 3) # now N rows, 3 columns
     lj_vals = []
     total_pot = 0
     #println(typeof(positions)) #make sure that positions is a matrix 
@@ -104,12 +101,4 @@ function sum_lj_energy(positions) #a positions matrix where columns = 3 and rows
     return total_pot
 end
 
-
-
 #--- END OF TOTAL POT FUNCTIONS
-
-
-
-        
-
-

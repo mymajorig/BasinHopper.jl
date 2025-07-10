@@ -36,4 +36,10 @@ f = 6.2385279
 round_num(f, 5)
 round_num(f,4)
 
+#testing sum_lj_energy where the input is a matrix
+atom1 = [4, 5, 30]
+atom2 = [3, 12, 1]
+atom3 = [13, 2, 18]
+atom4 = [14, 5, 27]
+positions = [atom1'; atom2'; atom3'; atom4']
 
