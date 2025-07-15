@@ -102,3 +102,10 @@ function sum_lj_energy(positions) #a positions matrix where columns = 3 and rows
 end
 
 #--- END OF TOTAL POT FUNCTIONS
+
+#turn the total potential energy calculation into a function so you can use the result for optimization 
+function opt(x) #where x is a FLAT vector --> [1 2 3 4] rather than [1, 2, 3, 4]
+    x = reshape(x, :, 3) #reshape x into a MATRIX so that it can be processed by sum_lj_energy-> can’t declare x as a matrix in opt’s argument because Optim.optimize always passes a flat vector regardless of how u try and set the parameter up
+    energy_val = sum_lj_energy(x)
+    return energy_val 
+end

@@ -43,3 +43,10 @@ atom3 = [13, 2, 18]
 atom4 = [14, 5, 27]
 positions = [atom1'; atom2'; atom3'; atom4']
 
+#opt function
+u = [1.0, 2.0, 5.0]
+v = [2.0, 5.0, 3.0]
+i = [3.0, 6.0, 8.0]
+
+array = [u' v' i']
+opt_version = opt(array)
