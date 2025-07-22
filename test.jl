@@ -4,6 +4,8 @@ include("potential_energy_functions.jl")
 #TESTING LENNARD JONES
 lennard_jones(1.1)
 lennard_jones(2.4)
+lennard_jones(0.8)
+lennard_jones(0.6)
 
 #TESTING sum_lj_energy that takes in a list of distances
 
@@ -21,6 +23,15 @@ a4 = [0,3,8]
 
 sample = [a1'; a2'; a3'; a4'] # the semicolons make the computer interpret each a# as a ROW -> 4 rows and 1 column of atomic coordinates 
 #sample2 = vcat(a1', a2', a3', a4') - alternate way of doing this 
+
+#another test for the sum_lj(matrix)
+mpositions = [
+    0.0  0.0  0.0;   # atom 1: x y z
+    2.0  7.0  9.0;   # atom 2: x y z
+    7.0  8.0  3.0    # atom 3: x y z
+]
+
+println(sum_lj_energy(mpositions))
 
 #TESTING distance between 2 atoms
 at1 = [2, 5]
@@ -50,3 +61,5 @@ i = [3.0, 6.0, 8.0]
 
 array = [u' v' i']
 opt_version = opt(array)
+
+

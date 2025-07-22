@@ -25,6 +25,9 @@ end
 
 #lennard jones function 
 function lennard_jones(distance, epsilon = 1, sigma = 1) #defaults, if u change them in calls parameters will just be overridden
+    if distance < 0.8
+        distance = 0.8
+    end
       return 4 * epsilon * ((sigma / distance)^ 12 - (sigma / distance)^ 6)
 end
 
@@ -45,13 +48,14 @@ function sum_lj_energy(distance, theta)
     error("theta too close to ±90 degrees, causing division by zero.")
     end
 
+    #for plotting purposes but not nessesary
     atom1 = [0,0]
     atom2 = [distance, 0]
 
     midpoint_distance = distance/2
     midpoint = [midpoint_distance, 0]
 
-
+    #
    r13 = distance/(2*cos(theta)) #half of the distance aka half of r12 divided by cos theta
 
    r23 = r13 
@@ -86,7 +90,7 @@ function sum_lj_energy(distance, x3, y3) #by using coordinates or fixing one dis
 end 
 
 function sum_lj_energy(positions) #a positions matrix where columns = 3 and rows = however many atoms there are 
-    positions = reshape(positions, :, 3) # now N rows, 3 columns
+    #positions = reshape(positions, :, 3) # now N rows, 3 columns
     lj_vals = []
     total_pot = 0
     #println(typeof(positions)) #make sure that positions is a matrix 
@@ -100,6 +104,8 @@ function sum_lj_energy(positions) #a positions matrix where columns = 3 and rows
     end
     return total_pot
 end
+
+
 
 #--- END OF TOTAL POT FUNCTIONS
 
