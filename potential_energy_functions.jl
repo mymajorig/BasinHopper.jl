@@ -105,8 +105,6 @@ function sum_lj_energy(positions) #a positions matrix where columns = 3 and rows
     return total_pot
 end
 
-
-
 #--- END OF TOTAL POT FUNCTIONS
 
 #turn the total potential energy calculation into a function so you can use the result for optimization 
@@ -115,3 +113,44 @@ function opt(x) #where x is a FLAT vector --> [1 2 3 4] rather than [1, 2, 3, 4]
     energy_val = sum_lj_energy(x)
     return energy_val 
 end
+
+#pick a random index number in a list that excludes the midpoint index in that set 
+function rand_exclude_midpoint(list_length, excluded_val)
+        randomNum = rand(1:list_length)
+        while(randomNum == excluded_val)
+            randomNum = rand(1:list_length)
+        end
+        return randomNum 
+    end 
+
+function generateRandomNums(n, range) #generates a list of random numbers where none of them are the same
+    #n = how many random numbers u need #range = the range of ur random numbers
+    randomNumList = []
+
+for i in 1:n
+    randNum = rand(1:range)
+    for i in randomNumList #runs through random num list 
+        while randNum == i #while the random number generated is equal to 1 or more nums already in the list
+            randNum = rand(1:range) #regenerate it
+        end
+    end
+    println(randNum)
+    push!(randomNumList, randNum) #push the number into the list 
+end
+
+end 
+
+function generateRandomNumsExcludeMidpoint(n, range, excluded) #generates a list of random numbers where none of them are the same AND it excludes a certain index
+    #n = how many random numbers u need #range = the range of ur random numbers
+    randomNumList = []
+
+for _ in 1:n #dont need 'i' 
+    randNum = rand(1:range)
+        while (randNum in randomNumList || randNum == excluded) #while the random number generated is equal to 1 or more nums already in the list
+            randNum = rand(1:range) #regenerate it
+        end
+    println(randNum)
+    push!(randomNumList, randNum) #push the number into the list 
+end
+
+end 

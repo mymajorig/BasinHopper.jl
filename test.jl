@@ -62,4 +62,12 @@ i = [3.0, 6.0, 8.0]
 array = [u' v' i']
 opt_version = opt(array)
 
+#rand_exclude_midpointlist = [2, 4, 5, 7, 8, 9, 3]
+tlist = [2, 4, 5, 7, 8, 9, 3]
+midpoint = ceil(Int, length(tlist)/2)
+println(rand_exclude_midpoint(length(tlist), midpoint))
 
+#generate random number AND exclude a certain value
+testlist = [23, 45, 91]
+mid = ceil(length(testlist)/2)
+println(generateRandomNumsExcludeMidpoint(3, length(testlist), mid))
