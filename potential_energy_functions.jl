@@ -145,12 +145,14 @@ function generateRandomNumsExcludeMidpoint(n, range, excluded) #generates a list
     randomNumList = []
 
 for _ in 1:n #dont need 'i' 
-    randNum = rand(1:range)
+    randNum = rand(2:range) #making it 2 bc dont want to include the first value
         while (randNum in randomNumList || randNum == excluded) #while the random number generated is equal to 1 or more nums already in the list
             randNum = rand(1:range) #regenerate it
         end
     println(randNum)
     push!(randomNumList, randNum) #push the number into the list 
 end
+
+return randomNumList
 
 end 
