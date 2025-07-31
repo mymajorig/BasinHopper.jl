@@ -1,5 +1,32 @@
 using LinearAlgebra 
 
+#optimization section 
+
+function getRuntimes(func, gradient_function, method) #making it a seperate method so i can use the list output in making a violin plot 
+    runtimes = Float64[] #an empty list of float 64 bits values
+ for i in starting_points
+        one_runtime = @elapsed optimize(func, gradient_function, i, method) #RETURNS the runtime rather than just printing it 
+        #@elapsed gets the runtime
+        push!(runtimes, one_runtime) #pushes the runtime into the list
+    end
+
+    return runtimes 
+end
+
+function avgRuntime(func, grad, method)
+     avg = 0
+     #getting the runtime with each starting point and adding that runtime to the list
+   runtimes_list = getRuntimes(func, grad, method)
+    #running through the list of runtimes and summing them up
+    for j in runtimes_list 
+        avg+=j
+    end 
+    avg /= length(runtimes_list) #avging the runtimes 
+    return avg 
+
+end 
+#-- end of optimization section
+
 #calculate the distance between 2 atoms
 function distance_two_atoms(atom1, atom2)
     return norm(atom2 - atom1)
